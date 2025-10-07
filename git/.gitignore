@@ -1,0 +1,127 @@
+# ----------------------------------------------------------------------
+# System and OS Files
+# ----------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+
+# ----------------------------------------------------------------------
+# Environment Variables / Credentials
+# Keep all secret/configuration files out of version control!
+# ----------------------------------------------------------------------
+.env
+.venv
+/venv/
+/env/
+*.sqlite3       # SQLite database files
+*.db            # Generic database files
+config/secrets.yml
+# Add any specific credentials/config files here (e.g., keys.json)
+# *.key
+# *.pem
+
+# ----------------------------------------------------------------------
+# Python / Backend (Assuming your backend is Python-based)
+# ----------------------------------------------------------------------
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+# Use a specific folder name if your virtual environment is named differently
+/venv/
+/env/
+# virtualenv (legacy, but useful)
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Testing and coverage
+.coverage
+.tox/
+htmlcov/
+.nox/
+
+# ----------------------------------------------------------------------
+# Node.js / Frontend (Assuming your frontend uses NPM)
+# ----------------------------------------------------------------------
+# Dependencies
+/node_modules
+/jspm_packages/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Build artifacts
+public/
+dist/
+out/
+build/
+# For various frameworks/tools, add their common build output folders
+# For example, if using a React/Vue CLI, add:
+# /public/build
+# /client/dist
+
+# Optional npm cache directory
+.npm
+# Yarn cache
+.yarn/
+# If using a lock file that should be ignored (usually NOT recommended, but possible)
+# package-lock.json
+# yarn.lock
+
+# ----------------------------------------------------------------------
+# IDE and Editor Files
+# ----------------------------------------------------------------------
+# VSCode
+.vscode/
+# Only ignore certain VSCode files, you might want to share settings, tasks, and launch configs:
+# !.vscode/settings.json
+# !.vscode/tasks.json
+# !.vscode/launch.json
+# !.vscode/extensions.json
+# Ignore the workspace file itself
+*.code-workspace
+
+# JetBrains (IntelliJ, PyCharm, WebStorm, etc.)
+.idea/
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# Vim
+*.swp
+*.swo
+*.swn
+
+# Emacs
+#*#
+.#*
+
+# ----------------------------------------------------------------------
+# Miscellaneous Artifacts
+# ----------------------------------------------------------------------
+*.log
+*.tmp
+*.bak
