@@ -4,52 +4,62 @@ import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 import { lazy } from "react";
-import Header from "./assets/Header.jsx";
-import Home from "./assets/Home.jsx";
-import Footer from "./assets/Footer.jsx";
-import Signup from "./assets/Signup.jsx";
+import Header from "./components/Header.jsx";
+import Home from "./components/Home.jsx";
+import Footer from "./components/Footer.jsx";
+import Signup from "../src/pages/User/Signup.jsx"
 import { Provider } from "react-redux";
 import store from "./stores/index.js";
 import "./style.css";
-import ContactUs from "./assets/Contact.jsx";
+import ContactUs from "./components/Contact.jsx";
+import { ToastContainer } from "react-toastify"
+import { toast } from "react-toastify";
 
-const Users =  lazy(() => import("./assets/Users.jsx"))
-const Ports =  lazy(() => import("./assets/Ports.jsx"))
-const OrderDetails = lazy(() => import("./assets/OrderDetail.jsx"))
-const EditProfileForm = lazy(() => import("./assets/EditProfile.jsx"))
-const Profile = lazy(() => import("./assets/Profile.jsx"))
-const DockShip = lazy(() => import("./assets/DockShip.jsx"))
-const UpdateShip = lazy(() => import("./assets/UpdateShip.jsx"))
-const UpdatePort = lazy(() => import("./assets/UpdatePort.jsx"))
-const ShipDetails = lazy(() => import("./assets/ShipDetails.jsx"))
-const AddShip = lazy(() => import("./assets/AddShip.jsx"))
-const AddPort = lazy(() => import("./assets/AddPort.jsx"))
-const PortManagement = lazy(() => import("./assets/PortManagement.jsx"))
-const NewOrder = lazy(()=>import("./assets/NewOrder.jsx"));
-const Service = lazy(() => import("./assets/Service.jsx"));
-const Track = lazy(() => import("./assets/Track.jsx"));
-const About = lazy(() => import("./assets/About.jsx"));
-const Login = lazy(() => import("./assets/Login.jsx"));
-const PortDetails = lazy(() => import("./assets/PortDetails.jsx"));
-const ShipManagement = lazy(() => import("./assets/ShipManagement.jsx"));
-const Orders = lazy(()=>import("./assets/Orders.jsx"))
-async function fetchData() {
-    const response = await fetch("/api");
-    if(response.ok){
-     const data = await response.json()
-      console.log(data.message)
-    }
-}
+const Users =  lazy(() => import("./pages/User/Users.jsx"))
+const Ports =  lazy(() => import("./pages/Port/Ports.jsx"))
+const OrderDetails = lazy(() => import("./pages/Order/OrderDetail.jsx"))
+const EditProfileForm = lazy(() => import("./pages/User/EditProfile.jsx"))
+const Profile = lazy(() => import("./pages/User/Profile.jsx"))
+const DockShip = lazy(() => import("./pages/Ship/DockShip.jsx"))
+const UpdateShip = lazy(() => import("./pages/Ship/UpdateShip.jsx"))
+const UpdatePort = lazy(() => import("./pages/Port/UpdatePort.jsx"))
+const ShipDetails = lazy(() => import("./pages/Ship/ShipDetails.jsx"))
+const AddShip = lazy(() => import("./pages/Ship/AddShip.jsx"))
+const AddPort = lazy(() => import("./pages/Port/AddPort.jsx"))
+const PortManagement = lazy(() => import("./pages/Port/PortManagement.jsx"))
+const NewOrder = lazy(()=>import("./pages/Order/NewOrder.jsx"));
+const Service = lazy(() => import("./components/Service.jsx"));
+const Track = lazy(() => import("./pages/Order/Track.jsx"));
+const About = lazy(() => import("./components/About.jsx"));
+const Login = lazy(() => import("./pages/User/Login.jsx"));
+const PortDetails = lazy(() => import("./pages/Port/PortDetails.jsx"));
+const ShipManagement = lazy(() => import("./pages/Ship/ShipManagement.jsx"));
+const Orders = lazy(()=>import("./pages/Order/Orders.jsx"))
+
+  // async function fetchData() {
+  //     const response = await fetch("/api");
+  //       const data = await response.json()
+  //       console.log(data)
+        
+  //     if(data.success){
+      
+  //       toast.success(data.message)
+  //     }
+  //     else{
+  //       toast.error(data.message)
+  //     }
+  // }
  
 const App = ()=>{
-   useEffect(()=>{
-      fetchData()
-   }, []);
+  //  useEffect(()=>{
+  //     fetchData()
+  //  }, []);
    
   return(
      <StrictMode>
     <Provider store={store}>
       <BrowserRouter>
+        <ToastContainer />
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -65,8 +75,8 @@ const App = ()=>{
           <Route path="/ships" element={<ShipManagement />} />
           <Route path="/addShip" element={<AddShip />} />
           <Route path="/shipDetails/:shipId" element={<ShipDetails />} />
-          <Route path="updateShip" element={<UpdateShip />} />
-          <Route path="/updatePort" element={<UpdatePort />} />
+          {/* <Route path="/updateShip" element={<UpdateShip />} />
+          <Route path="/updatePort" element={<UpdatePort />} /> */}
           <Route path="/dockShip" element={<DockShip />} />
           <Route path="/updateShip/:shipId" element={<UpdateShip />} />
           <Route path="/updatePort/:portId" element={<UpdatePort />} />

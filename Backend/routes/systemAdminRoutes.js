@@ -1,30 +1,51 @@
-const express = require('express');
-const User = require("../Models/User")
-const Ship = require("../Models/Ship")
+const express = require("express");
+const User = require("../Models/User");
+const Ship = require("../Models/Ship");
 const Port = require("../Models/Port");
-const Order = require('../Models/Order');
+const Order = require("../Models/Order");
+const { authenticateToken, authorizeSystemAdmin } = require("../middlewares/authentication");
+
 const systemAdminRoute = express.Router();
 
-systemAdminRoute.get("/systemStats", async (req, res) => {
+/**
+ * SYSTEM DASHBOARD STATISTICS
+ * Accessible only by SYSTEM ADMIN
+ */
+systemAdminRoute.get(
+  "/systemStats",
+  authenticateToken,
+  authorizeSystemAdmin,
+  async (req, res) => {
     try {
-        const totalUsers = await User.countDocuments({}); 
-        const totalShips = await Ship.countDocuments({}); 
-        const totalPorts = await Port.countDocuments({}); 
-        const totalOrders = await Order.countDocuments({});
-        res.status(200).json({
-            totalUsers,
-            totalShips,
-            totalPorts,
-            totalOrders,
-        });
+      // Run counts in parallel for better performance
+      const [totalUsers, totalShips, totalPorts, totalOrders] =
+        await Promise.all([
+          User.countDocuments({}),
+          Ship.countDocuments({}),
+          Port.countDocuments({}),
+          Order.countDocuments({}),
+        ]);
 
+      return res.status(200).json({
+        success: true,
+        message: "System statistics fetched successfully",
+        stats: {
+          totalUsers,
+          totalShips,
+          totalPorts,
+          totalOrders,
+        },
+      });
     } catch (error) {
-        console.error("Error fetching system statistics:", error);
-        res.status(500).json({ 
-            message: "Failed to fetch system statistics due to a server error.",
-            error: error.message
-        });
+      console.error("System stats error:", error);
+
+      return res.status(500).json({
+        success: false,
+        message: "Failed to fetch system statistics",
+        error: error.message,
+      });
     }
-}); 
+  }
+);
 
 module.exports = systemAdminRoute;
