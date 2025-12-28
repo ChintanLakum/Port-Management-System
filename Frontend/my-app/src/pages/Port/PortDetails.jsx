@@ -91,7 +91,7 @@ export default function PortDetails() {
   }
 
   const imgUrl = port?.img_url
-    ? `${BACKEND_BASE_URL}${port.img_url}`
+    ? `${port.img_url}`
     : "https://placehold.co/1600x700/0891b2/ffffff?text=Port";
 
   return (

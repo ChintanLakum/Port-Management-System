@@ -39,8 +39,7 @@ const ShipDetails = () => {
                 setShip(data.ship);
                 setImageUrl(
                     data.ship.img_url
-                        ? `${BACKEND_BASE_URL}${data.ship.img_url}`
-                        : null
+
                 );
             } else {
                 toast.error(data.message);
@@ -141,7 +140,7 @@ const ShipDetails = () => {
             toast.error("Network error while deleting ship");
         }
     };
-
+    console.log(ship, img_url)
 
     if (Object.keys(ship).length === 0 && !error) {
         return (

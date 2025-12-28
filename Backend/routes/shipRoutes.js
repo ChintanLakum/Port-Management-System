@@ -2,6 +2,7 @@ const express = require("express");
 const Ship = require("../Models/Ship");
 const Port = require("../Models/Port");
 const upload = require("../middlewares/storage");
+const cloudinary = require("cloudinary")
 const { authenticateToken, authorizeAdmin } = require("../middlewares/authentication");
 
 const shipRoute = express.Router();
@@ -15,6 +16,7 @@ shipRoute.post(
   upload.single("shipImage"),
   async (req, res) => {
     try {
+      const shipPhoto = req.file
       let {
         ship_name,
         ship_type,
@@ -46,6 +48,10 @@ shipRoute.post(
         status = "IN ROUTE";
       }
 
+      const imageUpload = await cloudinary.uploader.upload(shipPhoto.path, { resource_type: 'image' })
+    const imgUrl = imageUpload.secure_url
+    console.log(imageUpload.secure_url)
+    console.log(imgUrl, "imgUrl")
       const ship = await Ship.create({
         ship_name,
         ship_type,
@@ -59,9 +65,7 @@ shipRoute.post(
         last_port_name,
         destination_port_id,
         destination_port_name,
-        img_url: req.file
-          ? `/uploads/${req.file.filename}`
-          : "/ship-default.jpg",
+        img_url: imgUrl,
       });
 
       if (ship.status === "DOCKED" && ship.current_port_id) {

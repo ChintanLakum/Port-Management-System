@@ -3,6 +3,7 @@ const path = require("path");
 const upload = require("../middlewares/storage");
 const Ship = require("../Models/Ship");
 const Port = require("../Models/Port");
+const cloudinary = require("cloudinary")
 const { authenticateToken, authorizeSystemAdmin } = require("../middlewares/authentication");
 
 const portRoute = express.Router();
@@ -13,6 +14,7 @@ portRoute.post(
   authorizeSystemAdmin,
   upload.single("portPhoto"),
   async (req, res) => {
+    const portPhoto = req.file
     try {
       const {
         port_id,
@@ -42,10 +44,13 @@ portRoute.post(
             "Validation Error: total_docks cannot be less than available_ships",
         });
       }
-
-      const img_url = req.file
-        ? `/uploads/${req.file.filename}`
-        : "/uploads/port1.jpg";
+      const imageUpload = await cloudinary.uploader.upload(portPhoto.path, { resource_type: 'image' })
+    const img_url = imageUpload.secure_url
+    console.log(imageUpload.secure_url)
+    console.log(img_url, "imgUrl")
+      // const img_url = req.file
+      //   ? `/uploads/${req.file.filename}`
+      //   : "/uploads/port1.jpg";
 
       const newPort = new Port({
         port_id,
