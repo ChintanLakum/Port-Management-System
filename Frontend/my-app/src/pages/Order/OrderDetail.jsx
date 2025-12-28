@@ -76,12 +76,12 @@ const OrderDetails = () => {
    useEffect(() => {
   const fetchOrder = async () => {
     try {
-      toast.loading("Fetching order details...", { toastId: "order-fetch" });
+    //   toast.loading("Fetching order details...", { toastId: "order-fetch" });
 
       const response = await fetch(`/api/order/${orderId.orderId}`);
       const data = await response.json();
 
-      toast.dismiss("order-fetch");
+    //   toast.dismiss("order-fetch");
 
       if (!response.ok) {
         toast.error(data.message || "Order not found");

@@ -40,7 +40,7 @@ const TopPorts = () => {
     <section className="bg-gray-50 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-8 text-center">
-          ⚓ Busiest Ports (Most Ships Docked)
+          ⚓ Busiest Ports 
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6">

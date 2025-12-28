@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import PortCard from "./PortCard";
 import SearchBar from "../../components/Searchbar";
 import { toast } from "react-toastify";
-
+import { useSelector } from "react-redux";
 
 const Ports = () => {
   const [loading, setLoading] = useState(true);
@@ -11,7 +11,9 @@ const Ports = () => {
   const [ports, setPorts] = useState([]);
   const [portsToRender, setPortsToRender] = useState([]);
   const [hasSearched, setHasSearched] = useState(false);
-
+  const { isLoggedIn, isSystemAdmin} = useSelector(
+    (state) => state.auth
+  );
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -67,16 +69,14 @@ const Ports = () => {
       
       <div className="max-w-7xl mx-auto mb-6 flex-col sm:flex-row gap-4">
         <div className="flex-1">
-          <div className="bg-white mx-5 rounded-xl shadow-md flex h-12 sm:h-14">
+          
             <SearchBar 
               data={ports} 
               onFilterChange={handleFilteredPortsChange} 
               className="flex-1 h-full"
             />
-          </div>
-        </div>
-        {/* Add Port button */}
-        <div className="flex-1">
+           {/* Add Port button */}
+          {isSystemAdmin && <div className="flex-1">
           <div className="bg-white mt-0 p-0 rounded-xl shadow-md flex h-8 sm:h-10">
             <button
               onClick={handleAddPort}
@@ -85,6 +85,8 @@ const Ports = () => {
               Add Port
             </button>
           </div>
+        </div>}
+
         </div>
       </div>
 

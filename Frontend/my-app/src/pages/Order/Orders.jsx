@@ -55,7 +55,7 @@ const Orders = (ship)=>{
 
         // ✅ Success toast (only once, not spammy)
         if (ordersArray.length > 0) {
-            toast.success("Orders loaded successfully");
+            // toast.success("Orders loaded successfully");
         } else {
             toast.info("No orders found");
         }

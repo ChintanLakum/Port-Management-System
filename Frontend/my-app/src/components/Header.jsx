@@ -22,7 +22,7 @@ const Header = () => {
     ? `/portDetails/${portId}`
     : '/ports';
   const BACKEND_BASE_URL = 'http://localhost:5000';
-  const userImage = `${BACKEND_BASE_URL}${userProfilePhoto}`;
+  const userImage = `${userProfilePhoto}`;
 
   const handleLogout = async () => {
     try {

@@ -255,7 +255,7 @@ const Home = () => {
                         <p className="text-sm font-medium text-gray-500 uppercase">Ships in Port</p>
                         <FaShip className="text-2xl text-cyan-500" />
                     </div>
-                    <p className="text-4xl font-extrabold text-gray-900 mt-2">{0 }</p>
+                    <p className="text-4xl font-extrabold text-gray-900 mt-2">{ data.available_ships || 0 }</p>
                 </div>
 
                 {/* Orders Card */}
@@ -264,7 +264,7 @@ const Home = () => {
                         <p className="text-sm font-medium text-gray-500 uppercase">Pending Orders</p>
                         <FaClipboardList className="text-2xl text-green-500" />
                     </div>
-                    <p className="text-4xl font-extrabold text-gray-900 mt-2"></p>
+                    <p className="text-4xl font-extrabold text-gray-900 mt-2">{ data.available_ships ||  0}</p>
                 </div>
 
                 {/* Active Routes Card (Placeholder Data) */}
@@ -273,7 +273,7 @@ const Home = () => {
                         <p className="text-sm font-medium text-gray-500 uppercase">Active Routes</p>
                         <TbWorld className="text-2xl text-indigo-500" />
                     </div>
-                    <p className="text-4xl font-extrabold text-gray-900 mt-2">{ 0 }</p>
+                    <p className="text-4xl font-extrabold text-gray-900 mt-2">{data.available_ships ||   0 }</p>
                 </div>
 
                 {/* Port Capacity Card */}
@@ -282,7 +282,7 @@ const Home = () => {
                         <p className="text-sm font-medium text-gray-500 uppercase">Total Capacity</p>
                         <FaWarehouse className="text-2xl text-orange-500" />
                     </div>
-                    <p className="text-4xl font-extrabold text-gray-900 mt-2">{0}</p>
+                    <p className="text-4xl font-extrabold text-gray-900 mt-2">{data.total_docks||0}</p>
                 </div>
             </div>
 
