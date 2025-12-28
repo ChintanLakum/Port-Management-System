@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const path = require('path');
@@ -8,12 +8,12 @@ const cookieParser = require('cookie-parser');
 const userRoutes = require('./routes/userRoutes');
 const shipRoutes = require('./routes/shipRoutes');
 const portRoutes = require('./routes/portRoutes');
-const connectDB = require("./middlewares/databaseConnection");
+const connectDB = require("./config/mongodb.js")
 const systemAdminRoute = require('./routes/systemAdminRoutes');
 const orderRoute = require('./routes/orderRoutes');
-connectDB();
+
 connectCloudinary()
-//this is last touched-up file 
+connectDB();
 const app = express();
 
 const distPath = path.join(__dirname, '../Frontend/my-app/dist');

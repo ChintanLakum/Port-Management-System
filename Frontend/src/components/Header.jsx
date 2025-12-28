@@ -35,6 +35,7 @@ const Header = () => {
         dispatch(setLogout());
         setIsOpen(false);
       } else {
+        const data = await response.json();
         toast.error(data.message)
         console.error("Logout failed:", response.status, response.statusText);
       }
