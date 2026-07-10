@@ -21,7 +21,7 @@ const ShipCard = ({ ship }) => {
   } = ship;
 
   const BACKEND_BASE_URL = "http://localhost:5000";
-  const fullImgUrl = `${BACKEND_BASE_URL}${img_url}`;
+  const fullImgUrl = `${img_url}`;
 
   return (
     <div

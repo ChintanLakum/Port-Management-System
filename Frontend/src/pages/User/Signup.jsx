@@ -25,6 +25,11 @@ const Signup = () => {
     }
   };
 
+  function validateEmail(email) {
+    const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return pattern.test(email);
+  }
+
   const handleSignup = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -38,6 +43,7 @@ const Signup = () => {
       formData.append("mobileno", phone);
       formData.append("role", role);
 
+
       if (profilePhoto) {
         formData.append("profile", profilePhoto);
       }
@@ -46,31 +52,37 @@ const Signup = () => {
         formData.append("portId", portId);
       }
 
-      const response = await fetch("/api/user/signup/post", {
-        method: "POST",
-        body: formData,
-      });
-      
-      const data = await response.json()
-      console.log("Success:", data);
-      if (data.success) {
-        toast.success(data.message)
-        setName("");
-        setEmail("");
-        setPassword("");
-        setPhone("");
-        setRole("user");
-        setProfilePhoto(null);
-        setPortId("");
-        setStep(1);
-        navigate('/login');
-      } else {
-        toast.error(data.message)
+      if (phone.length < 10 &&!validateEmail(email)) {
+        toast.error("mobile no is not valid ");
       }
+      else {
+        const response = await fetch("/api/user/signup/post", {
+          method: "POST",
+          body: formData,
+        });
+
+        const data = await response.json()
+        console.log("Success:", data);
+        if (data.success) {
+          toast.success(data.message)
+          setName("");
+          setEmail("");
+          setPassword("");
+          setPhone("");
+          setRole("user");
+          setProfilePhoto(null);
+          setPortId("");
+          setStep(1);
+          navigate('/login');
+        } else {
+          toast.error(data.message)
+        }
+      }
+
     } catch (error) {
-      console.error( error.message);
+      console.error(error.message);
       toast.error(error.message)
-      
+
     } finally {
       setLoading(false);
     }

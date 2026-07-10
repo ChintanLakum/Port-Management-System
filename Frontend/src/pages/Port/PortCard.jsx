@@ -3,8 +3,6 @@ import { toast } from "react-toastify";
 
 const PortCard = ({ port }) => {
   const navigate = useNavigate();
-
-
   const handleNavigate = () => {
     navigate(`/portDetails/${port_id}`);
   };
@@ -21,7 +19,7 @@ const PortCard = ({ port }) => {
   } = port;
 
   const BACKEND_BASE_URL = "http://localhost:5000";
-  const fullImgUrl = `${BACKEND_BASE_URL}${img_url}`;
+  const fullImgUrl = `${img_url}`;
 
   const utilization = total_docks
     ? Math.round((available_ships / total_docks) * 100)

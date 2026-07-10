@@ -201,7 +201,7 @@ const ShipDetails = () => {
                                 </button>
                             )}
 
-                            {isLoggedIn && !isAdmin && (ship.remain_storage_capacity > 0) && (
+                            {isLoggedIn && !isAdmin && !isSystemAdmin && (ship.remain_storage_capacity > 0) && (
                                 <button
                                     onClick={() => handlePlaceOrder(ship)}
                                     className="flex items-center space-x-2 px-6 py-3 bg-cyan-600 text-white font-bold rounded-full shadow-lg hover:bg-cyan-700 transition duration-200 ease-in-out transform hover:scale-105"

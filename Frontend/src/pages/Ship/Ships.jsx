@@ -43,7 +43,7 @@ const Ships = () => {
 
             setShips(shipArray);
             setShipsToReder(shipArray);
-            setError(null);
+            // setError(null);
 
         } catch (err) {
             console.error("Failed to fetch ships:", err);
